@@ -51,6 +51,12 @@ class MotivationController extends Controller
 
     }
 
+    public function motivation() : Motivation
+    {
+        dd(now()->format('Y-m-d'));
+        return Motivation::where('publication_date', )->first();
+    }
+        
     public function edit_motivation(Request $request,$id){
 
         //dd($request->all());

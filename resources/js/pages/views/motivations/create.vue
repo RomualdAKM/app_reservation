@@ -80,7 +80,7 @@ const saveMotivation = async () => {
                     >
                         <div>
                             <h5 class="text-title font-semibold mb-3">
-                                Créer un Motivation
+                                Créer une Motivation
                             </h5>
                             <form
                                 class="flex flex-col gap-4 m-0 sm:gap-3 theme-form"

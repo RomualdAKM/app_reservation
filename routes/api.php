@@ -33,6 +33,7 @@ Route::controller(MotivationController::class)->group(function(){
     Route::post('create_motivation','create_motivation');
     Route::post('edit_motivation/{id}','edit_motivation');
     Route::get('motivations','motivations');
+    Route::get('motivation_app','motivation_app');
     Route::get('get_motivation/{id}','get_motivation');
     Route::get('delete_motivation/{id}','delete_motivation');
    
