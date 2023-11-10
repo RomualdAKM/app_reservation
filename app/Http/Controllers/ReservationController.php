@@ -42,4 +42,10 @@ class ReservationController extends Controller
         $reservation->service = $request->service;
         $reservation->save();
     }
+
+    public function destroy($id)
+    {
+        $reservation = Reservation::find($id);
+        $reservation->delete();
+    }
 }
