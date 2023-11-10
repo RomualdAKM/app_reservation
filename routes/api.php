@@ -44,5 +44,6 @@ Route::controller(ServiceController::class)->group(function () {
 
 Route::controller(ReservationController::class)->group(function () {
     Route::get('reservations', 'reservations');
+    Route::get('reservation/{email}', 'reservation');
     Route::post('create_reservation', 'create_reservation');
 });

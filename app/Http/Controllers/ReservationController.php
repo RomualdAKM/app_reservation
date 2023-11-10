@@ -19,6 +19,18 @@ class ReservationController extends Controller
         ]);
     }
 
+    public function reservation($email)
+    {
+
+        $reservations = Reservation::where('email', $email)->orderBy('id', 'desc')->get();
+
+        return response()->json([
+
+            'reservations' => $reservations
+
+        ]);
+    }
+
     public function create_reservation(Request $request)
     {
         $reservation = new Reservation();
