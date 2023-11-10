@@ -12,7 +12,8 @@ class ServiceController extends Controller
 
         $validator = Validator::make($request->all(), [
             'nom' => 'required',
-            'prix' => 'required',
+            'description' => 'required',
+            'image' => 'required',
         ]);
     
         if ($validator->fails()) {
@@ -26,8 +27,10 @@ class ServiceController extends Controller
 
         $service = new Service();
        
-        $service->nom = $request->nom;
+        $service->nom = $request->nnomm;
         $service->prix = $request->prix;
+        $service->description = $request->description;
+        $service->image = $request->image;
       
 
         $service->save();

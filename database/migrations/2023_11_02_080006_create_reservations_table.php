@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('start_hour');
             $table->string('end_hour');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('service_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('service_id');
             $table->timestamps();
         });
     }
