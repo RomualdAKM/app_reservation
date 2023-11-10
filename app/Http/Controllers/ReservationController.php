@@ -24,11 +24,11 @@ class ReservationController extends Controller
 
         $reservations = Reservation::where('user_email', $email)->orderBy('id', 'desc')->get();
 
-        return response()->json([
+        return response()->json(
 
             $reservations
 
-        ]);
+        );
     }
 
     public function create_reservation(Request $request)
