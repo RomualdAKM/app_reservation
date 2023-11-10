@@ -26,7 +26,7 @@ class ReservationController extends Controller
 
         return response()->json([
 
-            'reservations' => $reservations
+            $reservations
 
         ]);
     }
