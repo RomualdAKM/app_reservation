@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
-{   
+{
 
     public function register(Request $request)
     {
         //validator
         $validator = Validator::make($request->all(), [
-            'name' => 'required',     
-            'email' => 'required|email|unique:users',      
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
             'password' => 'required',
             'c_password' => 'required|same:password'
         ]);
@@ -24,23 +24,23 @@ class AuthController extends Controller
         if ($validator->fails()) {
             $response = [
                 'success' => false,
-                'message' => $validator->errors(),         
+                'message' => $validator->errors(),
             ];
             return response()->json(
                 $response,
                 200
             );
         }
-       
+
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         // $user = User::create($input);
         $user = new User;
         $user->name = $request->name;
-       
+
         $user->email = $request->email;
-       
+
         $user->password = $input['password'];
         $user->save();
 
@@ -65,17 +65,18 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ])) {
-                $user = Auth::user();
-               // Stockez l'utilisateur connecté dans la session
-                 session(['user' => $user]);
-                 $user = $request->user();
+            $user = Auth::user();
+            // Stockez l'utilisateur connecté dans la session
+            session(['user' => $user]);
+            $user = $request->user();
 
             $success['token'] = $user->createToken('MyApp')->plainTextToken;
             $success['name'] = $user->name;
 
-            
+
 
             $response = [
+                'name' => $user->name,
                 'success' => true,
                 'data' => $success,
                 'message' => "User login successfully"
