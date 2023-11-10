@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->nullable();
+            $table->string('status')->default('En attente');
             $table->string('date');
             $table->string('start_hour');
             $table->string('end_hour');
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->integer('service_id');
+            $table->string('user_email');
+            $table->string('service');
             $table->timestamps();
         });
     }

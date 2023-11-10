@@ -26,8 +26,8 @@ class ReservationController extends Controller
         $reservation->date = $request->date;
         $reservation->start_hour = $request->start_hour;
         $reservation->end_hour = $request->end_hour;
-        $reservation->user_id = $request->user_id;
-        $reservation->service_id = $request->service_id;
+        $reservation->user_email = $request->user_email;
+        $reservation->service = $request->service;
         $reservation->save();
     }
 }
