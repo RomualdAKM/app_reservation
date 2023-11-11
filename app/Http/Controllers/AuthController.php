@@ -56,8 +56,48 @@ class AuthController extends Controller
         return response()->json($response, 200);
     }
 
+    public function edit(Request $request, $id)
+    {
+        //validator
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
 
+        if ($validator->fails()) {
+            $response = [
+                'success' => false,
+                'message' => $validator->errors(),
+            ];
+            return response()->json(
+                $response,
+                200
+            );
+        }
+
+
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        // $user = User::create($input);
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $input['password'];
+        $user->save();
+
+        $success['token'] = $user->createToken('MyApp')->plainTextToken;
+        $success['name'] = $user->name;
+
+        $response = [
+            'success' => true,
+            'data' => $success,
+            'message' => "User register successfully"
+        ];
+
+        return response()->json($response, 200);
+    }
 
     public function login(Request $request)
     {
@@ -72,8 +112,6 @@ class AuthController extends Controller
 
             $success['token'] = $user->createToken('MyApp')->plainTextToken;
             $success['name'] = $user->name;
-
-
 
             $response = [
                 'name' => $user->name,
